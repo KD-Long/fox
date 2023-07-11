@@ -65,4 +65,4 @@ git push -u origin main
 
 4. Automatic deployment --> ~/public_html/_sub_fox/
 
-5. Configured sub domain [fox.kyledlong.com](fox.kyledlong.com) to point to "_sub_fox/" folder
+5. Configured sub domain [fox.kyledlong.com](https://fox.kyledlong.com) to point to "_sub_fox/" folder

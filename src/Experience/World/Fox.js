@@ -10,7 +10,8 @@ export default class Fox
         this.resources = this.experience.resources
         this.time = this.experience.time
         this.debug = this.experience.debug
-
+        //defined here so can be accesed by other classes if exists
+        this.model = null
         // Debug
         if(this.debug.active)
         {
@@ -26,6 +27,7 @@ export default class Fox
 
     setModel()
     {
+  
         this.model = this.resource.scene
         this.model.scale.set(0.02, 0.02, 0.02)
         this.scene.add(this.model)
@@ -80,6 +82,21 @@ export default class Fox
             this.debugFolder.add(debugObject, 'playIdle')
             this.debugFolder.add(debugObject, 'playWalking')
             this.debugFolder.add(debugObject, 'playRunning')
+        }
+    }
+    nextAnimation(){
+        switch (this.animation.actions.current) {
+            case this.animation.actions.idle:
+                this.animation.play('walking')
+                break
+
+            case this.animation.actions.walking:
+                this.animation.play('running')
+                break
+
+            case this.animation.actions.running:
+                this.animation.play('idle')
+                break
         }
     }
 
