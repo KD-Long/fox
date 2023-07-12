@@ -30,9 +30,9 @@ export default class Mouse extends EventEmitter {
         })
 
         window.addEventListener('click', () => {
-            if (this.currentIntersect) {
+            if (this.foxCurrentIntersect || this.floorCurrentIntersect) {
                 //change the animation
-                this.model = this.experience.world.fox.nextAnimation()
+                this.experience.world.fox.nextAnimation()
             }
         })
     }
@@ -41,18 +41,25 @@ export default class Mouse extends EventEmitter {
 
         this.raycaster.setFromCamera(this.mousePos, this.camera)
 
-        // Test intersect with a model
-        if (this.floor) {
 
-
-            const modelIntersects = this.raycaster.intersectObject(this.floor)
-
+        if (this.model) {
+            //console.log(intersectObs)
+            const modelIntersects = this.raycaster.intersectObject(this.model)
             if (modelIntersects.length) {
-                this.currentIntersect = true
-
+                this.foxCurrentIntersect = true
             }
             else {
-                this.currentIntersect = false
+                this.foxCurrentIntersect = false
+            }
+        }
+        if (this.floor) {
+            //console.log(intersectObs)
+            const modelIntersects = this.raycaster.intersectObject(this.floor)
+            if (modelIntersects.length) {
+                this.floorCurrentIntersect = true
+            }
+            else {
+                this.floorCurrentIntersect = false
             }
         }
     }
